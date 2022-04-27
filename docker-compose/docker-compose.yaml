@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+
+  sqs-consumer:
+    build:
+      context: ../.
+    image: sqs-consumer:latest
+    container_name: sqs-consumer
+    environment:
+      - AWS_ENDPOINT=http://localstack:4566
+    ports:
+      - "8081:8081"
+    networks:
+      - foobar
+
+# See SNS-Producer [https://github.com/natanaelmartinezassis/sns-producer/blob/main/docker-compose/docker-compose.yaml]
+networks:
+  foobar:
+    external: true

@@ -1,0 +1,41 @@
+info:
+  app:
+    version: 1.0
+
+spring:
+  application:
+    name: sqs-consumer
+  main:
+    allow-bean-definition-overriding: true
+
+aws:
+  endpoint: "${AWS_ENDPOINT:http://localhost:4566}"
+  region: "us-east-1"
+  access-key: "123"
+  secret-key: "abc"
+  basic-credentials: true
+
+sqs:
+  queue:
+    add-foobar: "add-foobar-queue"
+
+log:
+  platform: ${PLATFORM:XPTO}
+  defaultPackage: com.example.appname
+  level: DEBUG
+  extraPackages:
+    - name: org.springframework.cloud
+      level: WARN
+  logstash:
+    enabled: false
+    host: localhost
+    port: 5010
+    queueSize: 512
+
+server:
+  port: 8081
+  error:
+    include-message: never
+    include-binding-errors: always
+    include-stacktrace: never
+    include-exception: false
